@@ -1,5 +1,5 @@
 {
-  "name": "linear",
+  "name": "linear-vscode",
   "displayName": "linear-vscode",
   "description": "Integrates Linear straight into your VSCode",
   "version": "0.0.1",
@@ -12,10 +12,53 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "vscode-linear-extension",
+          "title": "Linear",
+          "icon": "dist/assets/logo.svg"
+        }
+      ]
+    },
+    "views": {
+      "vscode-linear-extension": [
+        {
+          "icon": "dist/assets/logo.svg",
+          "id": "ConnectLinear",
+          "name": "Connect ",
+          "contextualTitle": "Connect to your Linear account",
+          "type": "tree",
+          "when": "!workspaceState.isConnected"
+        },
+        {
+          "icon": "dist/assets/logo.svg",
+          "id": "LinearIssueList",
+          "name": "Connect ",
+          "contextualTitle": "Issue List",
+          "type": "tree",
+          "when": "true"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "connectLinear",
+        "contents": "Connect to your Linear account. \n[Connect](command:connectSupabase.link_api_port)"
+      }
+    ],
     "commands": [
       {
         "command": "linear.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "linear.connectApiPort",
+        "title": "Connect to Linear"
+      },
+      {
+        "command": "linear.refreshIssues",
+        "title": "Refresh Linear Issues"
       }
     ]
   },
@@ -31,18 +74,21 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.99.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
+    "@types/vscode": "^1.99.0",
     "@typescript-eslint/eslint-plugin": "^8.28.0",
     "@typescript-eslint/parser": "^8.28.0",
-    "eslint": "^9.23.0",
-    "typescript": "^5.8.2",
-    "ts-loader": "^9.5.2",
-    "webpack": "^5.98.0",
-    "webpack-cli": "^6.0.1",
     "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1"
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.23.0",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.8.2",
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1"
   },
-  "packageManager": "pnpm@10.6.5+sha512.cdf928fca20832cd59ec53826492b7dc25dc524d4370b6b4adbf65803d32efaa6c1c88147c0ae4e8d579a6c9eec715757b50d4fa35eea179d868eada4ed043af"
+  "packageManager": "pnpm@10.6.5+sha512.cdf928fca20832cd59ec53826492b7dc25dc524d4370b6b4adbf65803d32efaa6c1c88147c0ae4e8d579a6c9eec715757b50d4fa35eea179d868eada4ed043af",
+  "dependencies": {
+    "@linear/sdk": "^38.0.0"
+  }
 }
