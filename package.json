@@ -33,6 +33,14 @@
         },
         {
           "icon": "dist/assets/logo.svg",
+          "id": "LinearProjectList",
+          "name": "Projects ",
+          "contextualTitle": "Project List",
+          "type": "tree",
+          "when": "true"
+        },
+        {
+          "icon": "dist/assets/logo.svg",
           "id": "LinearMyIssueList",
           "name": "My issues ",
           "contextualTitle": "My Issue List",
@@ -46,13 +54,21 @@
           "contextualTitle": "Issue List",
           "type": "tree",
           "when": "true"
+        },
+        {
+          "icon": "dist/assets/logo.svg",
+          "id": "LinearIssueActions",
+          "name": "Issue Actions ",
+          "contextualTitle": "Issue Actions",
+          "type": "tree",
+          "when": "true"
         }
       ]
     },
     "viewsWelcome": [
       {
         "view": "connectLinear",
-        "contents": "Connect to your Linear account. \n[Connect](command:connectSupabase.link_api_port)"
+        "contents": "Connect to your Linear account."
       }
     ],
     "commands": [

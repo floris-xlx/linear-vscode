@@ -4,14 +4,23 @@ import * as vscode from "vscode";
 
 // issues provider
 import { IssueProvider, getAssignedIssues } from "./IssueProvider";
+import { ProjectProvider } from "./ProjectProvider";
+import { IssueActionsProvider } from "./IssueActionsProvider";
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
   const issueProvider = new IssueProvider(context.secrets);
   const myIssueProvider = new IssueProvider(context.secrets);
+  const projectProvider = new ProjectProvider(context.secrets);
+  const issueActionsProvider = new IssueActionsProvider();
   vscode.window.registerTreeDataProvider("LinearIssueList", issueProvider);
   vscode.window.registerTreeDataProvider("LinearMyIssueList", myIssueProvider);
+  vscode.window.registerTreeDataProvider("LinearProjectList", projectProvider);
+  vscode.window.registerTreeDataProvider(
+    "LinearIssueActions",
+    issueActionsProvider
+  );
 
   // Use the console to output diagnostic information (console.log) and errors (console.error)
   // This line of code will only be executed once when your extension is activated
@@ -33,6 +42,8 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand("linear.refreshIssues", () => {
       issueProvider.refresh();
       myIssueProvider.refresh();
+      projectProvider.refresh();
+      issueActionsProvider.refresh();
     })
   );
 

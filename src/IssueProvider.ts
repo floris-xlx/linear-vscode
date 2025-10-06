@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import { LinearClient } from "@linear/sdk";
 
-async function createLinearClient(
+export async function createLinearClient(
   secretStorage: vscode.SecretStorage
 ): Promise<LinearClient | null> {
   const apiKey = await secretStorage.get("linear.apiKey");
